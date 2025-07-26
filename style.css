@@ -1,20 +1,40 @@
- /* Inline styles for quick reference */
- body {
-    font-family: Arial, sans-serif;
+/*
+ * Redesigned dark theme styles for the SlashHub download portal.
+ * The palette and layout have been updated to provide a modern,
+ * sleek appearance with improved readability on dark backgrounds.
+ */
+
+/* Define a set of CSS custom properties for easy colour management */
+:root {
+    --bg-color: #0a0d14;               /* base page background */
+    --card-bg: rgba(255, 255, 255, 0.05); /* translucent panel backdrop */
+    --accent-color: #2196f3;           /* primary accent (blue) */
+    --accent-hover: #1976d2;          /* darker shade for hover effects */
+    --text-color: #f5f5f5;            /* primary text colour */
+    --muted-color: #a0a7b4;           /* muted/secondary text colour */
+    --footer-bg: rgba(255, 255, 255, 0.08); /* footer backdrop */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #ffffff, #f7f7f7);
-    color: #333;
+    /* apply a dark base colour and the decorative swirl background */
+    background: var(--bg-color) url('background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
 }
 
 header {
-    background-color: #ff6600;
-    color: white;
+    /* semi‑transparent header that blends into the background */
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-color);
     padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 header .logo img {
@@ -30,62 +50,89 @@ nav ul {
 }
 
 nav ul li a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ffe4b5;
+    color: var(--accent-color);
 }
 
 main {
-    padding: 20px;
+    /* centre the content and allow it to fill the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px; /* leave space for the header */
+    min-height: calc(100vh - 140px); /* account for header/footer heights */
+}
+
+/* stylise the downloads card */
+#downloads {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
 }
 
-main h1 {
-    color: #ff6600;
-    margin-bottom: 10px;
+#downloads h1 {
+    margin-top: 0;
+    font-size: 2.2em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-main p {
+#downloads p {
     font-size: 1.1em;
     margin-bottom: 30px;
+    color: var(--muted-color);
 }
 
 .download-buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .download-buttons a {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 1em;
-    font-weight: bold;
-    color: white;
-    background-color: #ff6600;
+    font-weight: 600;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--accent-color), #5bc0f8);
     border-radius: 5px;
     text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, transform 0.2s;
 }
 
 .download-buttons a:hover {
-    background-color: #e55b00;
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent-color));
+    transform: translateY(-3px);
 }
 
 footer {
-    bottom: 0;
-    position: fixed;
     text-align: center;
     width: 100%;
-    padding: 15px;
-    background-color: #f2f2f2;
-    margin-top: 30px;
-    color: #666;
+    padding: 20px;
+    background-color: var(--footer-bg);
+    color: var(--muted-color);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: static;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
 }
